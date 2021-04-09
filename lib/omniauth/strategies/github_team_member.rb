@@ -21,6 +21,9 @@ module OmniAuth
 
       def team_member?(team_id)
         response = access_token.get("/teams/#{team_id}/memberships/#{raw_info['login']}")
+        puts "Response from GitHub for teams membership..."
+        puts response
+        puts "---------------------------------------------"
         response.status == 200 && response.parsed["state"] == "active"
       rescue ::OAuth2::Error
         false
